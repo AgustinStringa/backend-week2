@@ -3,17 +3,17 @@ import allData from "./datatest"
 class Profile{
 
 
+    //mongo
     getAllProfileFromMongo(){}
 
     getProfileByIdFromMongo(){}
 
-
+    //staticdata
     getAllProfileFromStaticData(){
-        alert();
         return allData;
     }
 
-    getProfileByIdStaticData(idRef){
+    getProfileByIdStaticData(idRef: String){
         //siempre indicar el tipo de datos
        const resolveData = allData.find(el=> String(el._id) == String(idRef));
 
@@ -27,6 +27,14 @@ class Profile{
 
         //retornando ambas soluciones
        return {resolveData, dataToFind};
+    }
+
+    addProfileToStaticData(profile){
+        allData.push(
+            profile
+        );
+
+        return allData;
     }
 
 }
