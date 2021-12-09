@@ -30,9 +30,33 @@ class Profile {
         const [firstElementDb] = matchProfilesById;
         matchProfileById = firstElementDb;
       }
-      console.log("debería mandar: ", matchProfileById);
 
-      return matchProfileById;
+      const resolveByFindOne = await ProfileModel.findOne({
+        _id: new Types.ObjectId(idRef),
+      }).lean();
+
+      const resolveById = await ProfileModel.findById(
+        new Types.ObjectId(idRef)
+      ).lean();
+
+      return [
+        {
+          matchProfileById: matchProfileById ? matchProfileById : {},
+        },
+        {
+          resolveByFindOne: resolveByFindOne ? resolveByFindOne : {},
+        },
+        {
+          resolveById: resolveById ? resolveById : {},
+        },
+      ];
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async addProfile(profile) {
+    try {
     } catch (error) {
       throw error;
     }

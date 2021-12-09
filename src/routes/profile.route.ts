@@ -74,9 +74,8 @@ ProfileRoute.get("/getProfileByIdFromMongo", async (req, res) => {
   try {
     let { idRef } = req.query;
     idRef = String(idRef).trim();
-    console.log("idRef es: ", idRef, typeof idRef);
+
     const response = await getProfileByIdFromMongo(idRef);
-    console.log("response es: ", response);
     return res.json({ response });
   } catch (error) {
     return res.json({
