@@ -17,7 +17,7 @@ const ProfileSchema = new Schema(
     fullName: { type: String, trim: true },
     lastName: { type: String, trim: true },
     mobilePhone: { type: String },
-    urlLinkedin: { type: String, unique: true, trim: true, lowercase: true },
+    urlLinkedin: { type: String, trim: true, lowercase: true },
     experiences: [ExperienceSchema],
     educations: [EducationSchema],
   },

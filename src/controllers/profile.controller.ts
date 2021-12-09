@@ -62,6 +62,12 @@ class Profile {
     }
   }
 
+  async addProfileToMongo(profile) {
+    const data = await ProfileModel.insertMany(profile);
+    console.log(data);
+    return data;
+  }
+
   //staticdata
   getAllProfileFromStaticData() {
     return allData;
