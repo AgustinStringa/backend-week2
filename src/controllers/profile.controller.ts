@@ -6,7 +6,14 @@ const { Types } = mongoose;
 
 class Profile {
   //mongo
-  async getAllProfileFromMongo() {}
+  async getAllProfileFromMongo() {
+    try {
+      const profiles = await ProfileModel.find({}).lean();
+      return profiles;
+    } catch (error) {
+      throw error;
+    }
+  }
 
   async getProfileByIdFromMongo(idRef) {
     //ES NECESARIO ENVIARLE EL OBJECTID COMO SE VE EN LA DB

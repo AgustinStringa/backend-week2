@@ -6,6 +6,7 @@ const {
   getProfileByIdStaticData,
   addProfileToStaticData,
   getProfileByIdFromMongo,
+  getAllProfileFromMongo,
 } = profileController;
 
 const ProfileRoute = new Router();
@@ -57,6 +58,18 @@ ProfileRoute.post("/addProfile", async (req, res) => {
 });
 
 //buscando en db
+ProfileRoute.get("/getAllProfilesFromMongo", async (req, res) => {
+  try {
+    const response = await getAllProfileFromMongo();
+    res.json(response);
+  } catch (error) {
+    return res.json({
+      error: true,
+      errorMessage: error.message,
+    });
+  }
+});
+
 ProfileRoute.get("/getProfileByIdFromMongo", async (req, res) => {
   try {
     let { idRef } = req.query;
