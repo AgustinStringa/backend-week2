@@ -9,6 +9,7 @@ const {
   getAllProfileFromMongo,
   addProfileToMongo,
   updateProfilesByBulkOperator,
+  addMultipleProfiles,
 } = profileController;
 
 const ProfileRoute = new Router();
@@ -90,8 +91,26 @@ ProfileRoute.get("/getProfileByIdFromMongo", async (req, res) => {
 //insertando en db
 ProfileRoute.post("/addProfileToMongo", async (req, res) => {
   try {
-    const { profile } = req.body;
+    const profile = req.body;
+
     const response = await addProfileToMongo(profile);
+
+    return res.json(response);
+  } catch (error) {
+    return res.json({
+      error: true,
+      errorMessage: error.message,
+    });
+  }
+});
+
+/**
+ * ver codigo de este, no esta completo
+ */
+ProfileRoute.post("/addMultipleProfiles", async (req, res) => {
+  try {
+    const profiles = req.body;
+    const response = await addMultipleProfiles(profiles);
     return res.json(response);
   } catch (error) {
     return res.json({

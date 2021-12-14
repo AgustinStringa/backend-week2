@@ -63,9 +63,40 @@ class Profile {
   }
 
   async addProfileToMongo(profile) {
-    const data = await ProfileModel.insertMany(profile);
-    console.log(data);
-    return data;
+    try {
+      const data = await ProfileModel.insertMany(profile);
+      console.log(data);
+      return data;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async addMultipleProfiles(profiles) {
+    try {
+      const newElements = [];
+      for (const [index, profile] of Object.entries(profiles)) {
+        console.log(
+          `==========PROCESSING ${Number(index) + 1} OF ${
+            profiles.length
+          } ============ `
+        );
+        console.log(`data del perfil`, profile);
+        /**
+         * codigo para insertar en db
+         */
+        const newProfile = new ProfileModel(profile);
+        const responseSave = await newProfile.save();
+
+        newElements.push(responseSave);
+        // const newProfile = new ProfileModel(profile);
+        // await newProfile.save();
+      }
+
+      return { data: newElements, success: true };
+    } catch (error) {
+      throw error;
+    }
   }
 
   async updateProfilesByBulkOperator(profilesid) {

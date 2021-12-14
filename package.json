@@ -7,11 +7,13 @@
     "@swc/cli": "^0.1.52",
     "@swc/core": "^1.2.118",
     "@swc/register": "^0.1.7",
+    "cors-middleware": "^3.0.0",
     "dotenv": "^10.0.0",
     "mongoose": "^6.1.0",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.15",
     "restify": "^8.6.0",
+    "restify-cors-middleware2": "^2.1.2",
     "restify-router": "^0.6.2"
   },
   "devDependencies": {
