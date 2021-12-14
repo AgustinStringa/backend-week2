@@ -8,6 +8,7 @@ const {
   getProfileByIdFromMongo,
   getAllProfileFromMongo,
   addProfileToMongo,
+  updateProfilesByBulkOperator,
 } = profileController;
 
 const ProfileRoute = new Router();
@@ -91,6 +92,19 @@ ProfileRoute.post("/addProfileToMongo", async (req, res) => {
   try {
     const { profile } = req.body;
     const response = await addProfileToMongo(profile);
+    return res.json(response);
+  } catch (error) {
+    return res.json({
+      error: true,
+      errorMessage: error.message,
+    });
+  }
+});
+
+ProfileRoute.post("/updateProfiles", async (req, res) => {
+  try {
+    const { profileIds } = req.body;
+    const response = await updateProfilesByBulkOperator(profileIds);
     return res.json(response);
   } catch (error) {
     return res.json({

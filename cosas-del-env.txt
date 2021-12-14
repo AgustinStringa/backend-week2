@@ -1,0 +1,5 @@
+ENDPOINT_MONGO_DB=mongodb://bootcamp:bootcamp@localhost:27017/profiles?authSource=admin
+
+inicial, no auth:
+
+ENDPOINT_MONGO_DB=mongodb://localhost:27017/profiles

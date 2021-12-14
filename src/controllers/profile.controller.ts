@@ -68,6 +68,27 @@ class Profile {
     return data;
   }
 
+  async updateProfilesByBulkOperator(profilesid) {
+    const profileBulkOperator =
+      ProfileModel.collection.initializeUnorderedBulkOp();
+
+    for (const profileid of profilesid) {
+      profileBulkOperator
+        .find({
+          _id: new Types.ObjectId(profileid),
+        })
+        .updateOne({
+          $set: {
+            lastName: "bootcamp",
+          },
+        });
+    }
+
+    if (profileBulkOperator) {
+      const dataOperation = await profileBulkOperator.execute();
+      console.log(dataOperation);
+    }
+  }
   //staticdata
   getAllProfileFromStaticData() {
     return allData;
